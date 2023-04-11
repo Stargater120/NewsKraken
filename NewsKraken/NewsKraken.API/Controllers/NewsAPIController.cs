@@ -8,7 +8,7 @@ namespace NewsKraken.API.Controllers;
 public class NewsAPIController : ControllerBase
 {
     private readonly NewsGatherer _newsGatherer;
-
+    // private readonly 
     public NewsAPIController(NewsGatherer newsGatherer)
     {
         _newsGatherer = newsGatherer;
@@ -24,4 +24,10 @@ public class NewsAPIController : ControllerBase
             Articles = result.Articles
         });
     }
+
+    // [HttpPost("/news.api/save")]
+    // public async Task<IActionResult> SaveArticle([FromBody] SaveArticleModel model)
+    // {
+    //     
+    // }
 }
