@@ -5,11 +5,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["NewsKraken.API/", "NewsKraken.API/NewsKraken.API.csproj"]
-COPY ["NewsKraken.Core/", "NewsKraken.Core/NewsKraken.Core.csproj"]
-COPY ["NewsKraken.Database/", "NewsKraken.Database/NewsKraken.Database.csproj"]
-RUN dotnet restore "NewsKraken.API/NewsKraken.API.csproj"
 COPY . .
+RUN dotnet restore "NewsKraken.API/NewsKraken.API.csproj"
 WORKDIR "/src/NewsKraken.API"
 RUN dotnet build "NewsKraken.API.csproj" -c Release -o /app/build
 

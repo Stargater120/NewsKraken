@@ -1,9 +1,13 @@
 using Core.NewsAPI;
 using Core.NewsAPI.RequestModels;
 using NewsKraken.API;
+using NewsKraken.Database;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var configManager = builder.Configuration;
+var config = new Config();
+configManager.Bind(config);
+builder.Services.Configure<Config>(configManager);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -11,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegisterServices();
+builder.Services.AddScoped<NewsKrakenDBContext>(x => new NewsKrakenDBContext(config.ConnectionString));
 
 var app = builder.Build();
 
